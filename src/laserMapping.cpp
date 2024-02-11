@@ -737,8 +737,7 @@ void h_share_model(state_ikfom &s, esekfom::dyn_share_datastruct<double> &ekfom_
     V3D C(s.rot.conjugate() * norm_vec);
     V3D A(point_crossmat * C);
     if (extrinsic_est_en) {
-      V3D B(point_be_crossmat * s.offset_R_L_I.conjugate() *
-            C);  // s.rot.conjugate()*norm_vec);
+      V3D B(point_be_crossmat * s.offset_R_L_I.conjugate() * C);
       ekfom_data.h_x.block<1, 12>(i, 0) << norm_p.x, norm_p.y, norm_p.z,
           VEC_FROM_ARRAY(A), VEC_FROM_ARRAY(B), VEC_FROM_ARRAY(C);
     } else {
