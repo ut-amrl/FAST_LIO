@@ -981,6 +981,27 @@ int main(int argc, char **argv) {
       // publish_effect_world(pubLaserCloudEffect);
       // publish_map(pubLaserCloudMap);
 
+      /** extrinsic estimation **/
+      if (extrinsic_est_en) {
+        static int extrin_est_cnt = 0;
+        extrin_est_cnt++;
+
+        static V3D aver_T_L_I = V3D::Zero();
+        static V3D aver_rot_L_I = V3D::Zero();
+
+        aver_T_L_I = aver_T_L_I * (extrin_est_cnt - 1) / extrin_est_cnt +
+                     state_point.offset_T_L_I / extrin_est_cnt;
+        aver_rot_L_I =
+            aver_rot_L_I * (extrin_est_cnt - 1) / extrin_est_cnt +
+            Log(state_point.offset_R_L_I.toRotationMatrix()) / extrin_est_cnt;
+
+        if (extrin_est_cnt % 100 == 0) {
+          M3D aver_R_L_I = Exp(aver_rot_L_I(0), aver_rot_L_I(1), aver_rot_L_I(2));
+          cout << "Avg T_L_I: \n" << aver_T_L_I.transpose() << endl;
+          cout << "Avg R_L_I: \n" << aver_R_L_I << "\n" << endl;
+        }
+      }
+
       /*** Debug variables ***/
       if (runtime_pos_log) {
         frame_num++;
