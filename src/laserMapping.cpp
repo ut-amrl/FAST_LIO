@@ -517,7 +517,8 @@ void publish_frame_world(const ros::Publisher &pubLaserCloudFull) {
 
   /**************** save map ****************/
   /* 1. make sure you have enough memories
-  /* 2. noted that pcd save will influence the real-time performences **/
+   * 2. noted that pcd save will influence the real-time performences
+   */
   if (pcd_save_en) {
     int size = feats_undistort->points.size();
     PointCloudXYZI::Ptr laserCloudWorld(new PointCloudXYZI(size, 1));
@@ -856,7 +857,7 @@ int main(int argc, char **argv) {
   ros::Publisher pubOdomAftMapped =
       nh.advertise<nav_msgs::Odometry>("/Odometry", 100000);
   ros::Publisher pubPath = nh.advertise<nav_msgs::Path>("/path", 100000);
-  //------------------------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------
   signal(SIGINT, SigHandle);
   ros::Rate rate(5000);
   bool status = ros::ok();
