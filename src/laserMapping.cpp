@@ -594,8 +594,7 @@ void set_posestamp(T &out) {
 void publish_odometry(const ros::Publisher &pubOdomAftMapped) {
   odomAftMapped.header.frame_id = "camera_init";
   odomAftMapped.child_frame_id = "body";
-  odomAftMapped.header.stamp =
-      ros::Time().fromSec(lidar_end_time);  // ros::Time().fromSec(lidar_end_time);
+  odomAftMapped.header.stamp = ros::Time().fromSec(lidar_end_time);
   set_posestamp(odomAftMapped.pose);
   pubOdomAftMapped.publish(odomAftMapped);
   auto P = kf.get_P();
@@ -996,6 +995,10 @@ int main(int argc, char **argv) {
 
         if (extrin_est_cnt % 100 == 0) {
           M3D aver_R_L_I = Exp(aver_rot_L_I(0), aver_rot_L_I(1), aver_rot_L_I(2));
+          cout << "New T_L_I: \n" << state_point.offset_T_L_I.transpose() << endl;
+          cout << "New R_L_I: \n"
+               << state_point.offset_R_L_I.toRotationMatrix() << endl;
+
           cout << "Avg T_L_I: \n" << aver_T_L_I.transpose() << endl;
           cout << "Avg R_L_I: \n" << aver_R_L_I << "\n" << endl;
         }
