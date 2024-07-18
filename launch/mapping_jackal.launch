@@ -14,11 +14,14 @@
     <param name="runtime_pos_log_enable" type="bool" value="0" />
     <node pkg="fast_lio" type="fastlio_mapping" name="laserMapping" output="screen" /> 
 
-    <node pkg="tf" type="static_transform_publisher" name="body_to_camera_tf_publisher" args="-0.034803 0.010012 0.424886 -0.012760 -0.000335 -0.120106 0.992679 body camera 100" />--> <!-- Jackal -->
+  <!--Jackal-->
+  <!--<node pkg="tf" type="static_transform_publisher" name="body_to_camera_tf_publisher" args="-0.034803 0.010012 0.424886 -0.012760 -0.000335 -0.120106 0.992679 body camera 100" />-->
 
-  <!--<node pkg="tf" type="static_transform_publisher" name="body_to_camera_tf_publisher" args="0.0313483 -0.00852594 -0.100549 -0.01578584 -0.01190483 -0.00211487 0.99980229 body camera 100" />--> <!-- CODa -->
+  <!--CODa-->
+  <node pkg="tf" type="static_transform_publisher" name="body_to_camera_tf_publisher" args="0.0313483 -0.00852594 -0.100549 -0.01578584 -0.01190483 -0.00211487 0.99980229 body camera 100" />
 
-    <!--<node pkg="tf" type="static_transform_publisher" name="body_to_camera_tf_publisher" args="-0.034803, 0.010012, 0.424886 0.000070, -0.009100, -0.999947, -0.004711 body camera 100" /> [> Wanda <]-->
+  <!--Wanda-->
+    <!--<node pkg="tf" type="static_transform_publisher" name="body_to_camera_tf_publisher" args="-0.034803, 0.010012, 0.424886 0.000070, -0.009100, -0.999947, -0.004711 body camera 100" />-->
 
     <group if="$(arg rviz)">
       <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_lio)/rviz_cfg/loam_livox.rviz" />

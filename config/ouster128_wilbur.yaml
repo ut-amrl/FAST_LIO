@@ -1,6 +1,6 @@
 common:
-    lid_topic:  "/wanda/lidar_points"
-    imu_topic:  "/wanda/imu/data"
+    lid_topic:  "/wilbur/lidar_points_center"
+    imu_topic:  "/wilbur/imu/data"
     time_sync_en: false         # ONLY turn on when external time synchronization is really not possible
     time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
                                   # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
@@ -19,22 +19,10 @@ mapping:
     fov_degree: 180
     det_range: 100.0
     extrinsic_est_en: false # true: enable the online estimation of IMU-LiDAR extrinsic
-    #extrinsic_T: [ 0.0, 0.0, 0.0 ]
-    #extrinsic_R: [1, 0, 0,
-                  #0, 1, 0,
-                  #0, 0, 1]
-    #extrinsic_T: [ 0.026369, -0.380790,  0.424666]
-    #extrinsic_R: [ 0.971149,  0.238461,  0.002400,
-                  #-0.238444,  0.970824,  0.025414,
-                   #0.003731, -0.025253,  0.999674] # Jackal
-    #extrinsic_T: [ 0.03134830, -0.00852594, -0.1005490]
-    #extrinsic_R: [ 0.99970800,  0.00460475, -0.0237382,
-                  #-0.00385304,  0.99949300,  0.0316158,
-                   #0.02387170, -0.03151510,  0.9992180] # CODa
-    extrinsic_T: [-0.034803, 0.010012, 0.424886]
-    extrinsic_R: [-0.999956, -0.009424, -0.000055,
-                   0.009421, -0.999790,  0.018200,
-                  -0.000226,  0.018199,  0.999834] # Wanda
+    extrinsic_T: [-0.12362229, -0.00804636, 0.3790327]
+    extrinsic_R: [-0.99995575,  0.00298653,  0.00892088,
+                  -0.00316645, -0.99979048, -0.02022282,
+                   0.00885862, -0.02025017,  0.9997557]
 
 publish:
     path_en:  true
